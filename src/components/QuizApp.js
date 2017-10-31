@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { render } from 'react-dom';
 import Quiz from './Quiz';
 import Results from './Results';
 import shuffleQuestions from '../helpers/shuffleQuestions';
@@ -32,7 +33,7 @@ class QuizApp extends Component {
     const currentStep = step - 1;
     const tries = answersFromUser[currentStep].tries;
 
-    if (isCorrect && e.target.nodeName === 'P') {
+    if (isCorrect && e.target.nodeName === 'SPAN') {
       document.querySelector('.question:first-child').style.pointerEvents = 'none';
 
       e.target.parentNode.classList.add('right');
@@ -45,37 +46,21 @@ class QuizApp extends Component {
         userAnswers: answersFromUser
       });
 
-      setTimeout(() => {
-        const praise = document.querySelector('.praise');
-        const bonus = document.querySelector('.bonus');
+      const praise = document.querySelector('.praise');
+      const bonus = document.querySelector('.bonus');
+      const explanation = document.querySelector('.explanation');
+      render(questions[0].explanation, explanation);
 
-        if (tries === 0) {
-          praise.textContent = '1st Try!';
-          bonus.textContent = '+10';
-        }
-        if (tries === 1) {
-          praise.textContent = '2nd Try!';
-          bonus.textContent = '+5';
-        }
-        if (tries === 2) {
-          praise.textContent = 'Correct!';
-          bonus.textContent = '+2';
-        }
-        if (tries === 3) {
-          praise.textContent = 'Correct!';
-          bonus.textContent = '+1';
-        }
+      if (tries === 0) {
+        praise.textContent = 'Correct!';
+        bonus.textContent = '+1';
+      }
 
-        document.querySelector('.correct-modal').classList.add('modal-enter');
-        document.querySelector('.bonus').classList.add('show');
-
-      }, 750);
-
-      setTimeout(this.nextStep, 2750);
-
+      document.querySelector('.correct-modal').classList.add('modal-enter');
+      document.querySelector('.bonus').classList.add('show');
     }
 
-    else if (e.target.nodeName === 'P') {
+    else if (e.target.nodeName === 'SPAN') {
       e.target.style.pointerEvents = 'none';
       e.target.parentNode.classList.add('wrong');
 
@@ -101,10 +86,8 @@ class QuizApp extends Component {
     this.setState({
       step: step + 1,
       score: (() => {
-        if (tries === 1) return score + 10;
-        if (tries === 2) return score + 5;
-        if (tries === 3) return score + 2;
-        return score + 1;
+        if (tries === 1) return score + 1;
+        return score;
       })(),
       questions: restOfQuestions
     });
@@ -135,6 +118,7 @@ class QuizApp extends Component {
               totalQuestions={totalQuestions}
               score={score}
               handleAnswerClick={this.handleAnswerClick}
+              nextStep={this.nextStep}
             />
           );
         })()}

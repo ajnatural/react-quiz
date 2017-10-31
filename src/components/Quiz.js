@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import QuestionList from './QuestionList';
 
-const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick }) => {
+const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick, nextStep }) => {
   return (
     <div className="wrapper">
       <header>
@@ -10,7 +10,7 @@ const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick }) => 
           <div className="question-number">{step}</div>
           <div className="description">of <span>{totalQuestions}</span></div>
         </div>
-        <h1>JavaScript Quiz</h1>
+        <h1>Cognitive Bias Quiz</h1>
         <div className="score-container">
           <h2>Score</h2>
           <div className="score">{score}</div>
@@ -18,8 +18,10 @@ const Quiz = ({ step, questions, totalQuestions, score, handleAnswerClick }) => 
         </div>
       </header>
       <div className="correct-modal">
-        <div className="praise">Correct!</div>
+        <div className="praise"></div>
         <div className="bonus"></div>
+        <div className="explanation"></div>
+        <button className="next" onClick={nextStep}>Next</button>
       </div>
       <div className="questions">
         <QuestionList

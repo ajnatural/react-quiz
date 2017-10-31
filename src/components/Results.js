@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import tally from '../helpers/tally';
+import MailChimp from './MailChimp';
 
 const Results = ({ userAnswers, score, restartQuiz }) => {
   const triesTotal = tally(userAnswers);
@@ -9,6 +10,7 @@ const Results = ({ userAnswers, score, restartQuiz }) => {
   const fourTries = triesTotal[4] && <div><strong>{triesTotal[4]}</strong> on the fourth try.</div>;
   return (
     <div className="results-container">
+      <MailChimp />
       <h2>Quiz Results</h2>
       <div>You answered...</div>
       {oneTries}
@@ -16,7 +18,7 @@ const Results = ({ userAnswers, score, restartQuiz }) => {
       {threeTries}
       {fourTries}
       <div className="results-total">Your Total Score is <strong>{score}</strong>.</div>
-      <a onClick={restartQuiz}>Restart Quiz</a>
+      <button onClick={restartQuiz}>Restart Quiz</button>
     </div>
   );
 }

@@ -4,9 +4,9 @@ import Answer from './Answer';
 const Question = ({ question, answers, handleAnswerClick }) => {
   return (
     <li className="question">
-      <h2 className="question-title">
+      <div className="question-title">
         {question}
-      </h2>
+      </div>
       <ol className="question-answers">
         {answers.map((answer, index) => {
           return (

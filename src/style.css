@@ -26,7 +26,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.25em;
+  font-size: 2em;
   margin: 0 0 15px;
 }
 
@@ -78,6 +78,10 @@ code {
 
 .question {
   font-size: 2em;
+}
+
+.question-title {
+  font-weight: bold;
 }
 
 .question-answers {
@@ -136,7 +140,20 @@ code {
   font-size: 1.1em;
 }
 
-.results-container a {
+.mailchimp-container {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid black;
+}
+
+#mailchimp-email {
+    padding: 5px;
+    font-size: 20px;
+    width: 75%;
+}
+
+button {
   position: relative;
   padding: 15px 30px;
   margin-top: 30px;
@@ -147,11 +164,11 @@ code {
   transition: background .2s;
 }
 
-.results-container a:hover {
+button:hover {
   background: rgba(255,255,255,.1);
 }
 
-.results-container a:active, {
+button:active, {
   background: rgba(255,255,255,.5);
   outline: none;
   top: -2px;
@@ -183,19 +200,19 @@ code {
 }
 
 .correct-modal {
-  font-size: 5em;
+  font-size: 2em;
   text-align: center;
   width: 100%;
   background: rgb(252, 235, 148);
   padding: 5%;
   will-change: transform;
-  transform: scale(4);
+  transform: scale(2);
   z-index: 2;
   opacity: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 200px;
+  height: 90%;
   overflow: auto;
   margin: auto;
   position: absolute;
@@ -214,8 +231,10 @@ code {
 }
 
 .praise, .bonus {
+  font-size: 2em;
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
+  padding-bottom: 20px;
 }
 
 .bonus {
@@ -224,6 +243,10 @@ code {
 
 .bonus.show {
   display: block;
+}
+
+.explanation {
+    width: 85%;
 }
 
 @keyframes modal-enter {
@@ -275,19 +298,11 @@ code {
   .question-answer:hover {
     border-color: rgba(0,0,0,.5);
   }
-
-  .correct-modal {
-    height: 300px;
-  }
 }
 
 @media (min-width: 1400px) {
   body {
     font-size: 16px;
-  }
-
-  .correct-modal {
-    height: 400px;
   }
 }
 

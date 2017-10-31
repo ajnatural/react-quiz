@@ -35,5 +35,8 @@
     "quiz",
     "test",
     "react-component"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
 }
